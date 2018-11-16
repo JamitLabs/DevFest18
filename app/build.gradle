@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion "$target_version".toInteger()
+    defaultConfig {
+        applicationId "com.jamitlabs.devfest18demo"
+
+        minSdkVersion "$min_version".toInteger()
+        targetSdkVersion "$target_version".toInteger()
+        versionCode "$project_version_code".toInteger()
+        versionName "$project_version_name"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    // Obj - a simple Wavefront OBJ file loader
+    // https://github.com/javagl/Obj
+    implementation 'de.javagl:obj:0.2.1'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "androidx.appcompat:appcompat:$ktx_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+    implementation "com.google.android.material:material:$ktx_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation "android.arch.lifecycle:viewmodel:$architectureComp_version"
+
+
+    implementation "com.google.firebase:firebase-database:$firebase_version"
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // ARCore library
+    implementation "com.google.ar:core:$arcore_version"
+
+    // Provides ArFragment, and other UX resources.
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.5.1'
+}
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.ar.sceneform.plugin'
+
+
+sceneform.asset('src/main/assets/models/andy.obj',
+        'default',
+        'src/main/assets/models/andy.sfa',
+        'src/main/assets/andy')
+
+sceneform.asset('src/main/assets/models/Heart.obj',
+        'default',
+        'src/main/assets/models/Heart.sfa',
+        'src/main/assets/Heart')
+
+sceneform.asset('src/main/assets/models/Paper Airplane.obj',
+        'default',
+        'src/main/assets/models/Paper Airplane.sfa',
+        'src/main/assets/Paper Airplane')
+
+sceneform.asset('src/main/assets/models/Coffee Cup_final.obj',
+        'default',
+        'src/main/assets/models/Coffee Cup_final.sfa',
+        'src/main/assets/Coffee Cup_final')
+
+
+sceneform.asset('src/main/assets/models/jamitlabs.obj',
+        'default',
+        'src/main/assets/models/jamitlabs.sfa',
+        'src/main/assets/jamitlabs')
